@@ -1,0 +1,326 @@
+/* ============================================================
+   SUMI — a Sakura theme for Obsidian
+   Dark · playful · falling petals + bold type
+   ------------------------------------------------------------
+   Drop this file in:  <vault>/.obsidian/themes/Sumi/theme.css
+   Then: Settings → Appearance → Themes → Sumi, and set "Base color scheme" to Dark.
+   Pairs with Style Settings plugin (optional toggles below).
+   ============================================================ */
+
+/* ---- Fonts (Zen Maru Gothic + Zen Kaku Gothic New, bundled as local .woff2 — no network requests) ---- */
+@font-face { font-family: 'Zen Maru Gothic'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/ZenMaruGothic-400.woff2') format('woff2'); }
+@font-face { font-family: 'Zen Maru Gothic'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/ZenMaruGothic-500.woff2') format('woff2'); }
+@font-face { font-family: 'Zen Maru Gothic'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/ZenMaruGothic-700.woff2') format('woff2'); }
+@font-face { font-family: 'Zen Maru Gothic'; font-style: normal; font-weight: 900; font-display: swap; src: url('fonts/ZenMaruGothic-900.woff2') format('woff2'); }
+@font-face { font-family: 'Zen Kaku Gothic New'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/ZenKakuGothicNew-400.woff2') format('woff2'); }
+@font-face { font-family: 'Zen Kaku Gothic New'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/ZenKakuGothicNew-500.woff2') format('woff2'); }
+@font-face { font-family: 'Zen Kaku Gothic New'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/ZenKakuGothicNew-700.woff2') format('woff2'); }
+
+/* ============================================================
+   1. COLOR TOKENS  (Sumi palette)
+   ============================================================ */
+.theme-dark {
+  /* base surfaces */
+  --sumi-bg-window:        #181a22;
+  --sumi-bg-chrome:        #13151b;
+  --sumi-bg-main:          #1c1f28;
+  --sumi-bg-card:          #1e212a;
+  --sumi-bg-card-2:        #242833;
+  --sumi-border:           #2a2d38;
+  --sumi-border-2:         #2f3340;
+
+  /* sakura accents */
+  --sumi-pink:             #f4a0c0;
+  --sumi-pink-deep:        #ec84a4;
+  --sumi-pink-soft:        #e98aae;
+
+  /* graph / tag accents */
+  --sumi-violet:           #8a6fb0;
+  --sumi-teal:             #6fa0a8;
+  --sumi-gold:             #e2c06a;
+
+  /* text ramp */
+  --sumi-text-strong:      #ffffff;
+  --sumi-text:             #d4d8e4;
+  --sumi-text-2:           #b6bccc;
+  --sumi-text-muted:       #9aa0b4;
+  --sumi-text-faint:       #7d8296;
+  --sumi-text-faintest:    #6a7088;
+
+  /* ---- map onto Obsidian's variables ---- */
+  --background-primary:        var(--sumi-bg-main);
+  --background-primary-alt:     var(--sumi-bg-card);
+  --background-secondary:       var(--sumi-bg-chrome);
+  --background-secondary-alt:   var(--sumi-bg-window);
+  --background-modifier-border:        var(--sumi-border);
+  --background-modifier-border-hover:  var(--sumi-border-2);
+  --background-modifier-hover:         rgba(244,160,192,.08);
+  --titlebar-background:        var(--sumi-bg-chrome);
+  --titlebar-background-focused:var(--sumi-bg-chrome);
+
+  --text-normal:        var(--sumi-text);
+  --text-muted:         var(--sumi-text-muted);
+  --text-faint:         var(--sumi-text-faint);
+  --text-on-accent:     #181a22;
+  --text-accent:        var(--sumi-pink);
+  --text-accent-hover:  var(--sumi-pink-deep);
+  --text-selection:     rgba(244,160,192,.22);
+
+  --interactive-accent:        var(--sumi-pink);
+  --interactive-accent-hover:  var(--sumi-pink-deep);
+  --interactive-normal:        var(--sumi-bg-card);
+  --interactive-hover:         var(--sumi-bg-card-2);
+
+  --h1-color: var(--sumi-text-strong);
+  --h2-color: var(--sumi-text-strong);
+  --h3-color: var(--sumi-pink);
+  --link-color: var(--sumi-pink);
+  --link-color-hover: var(--sumi-pink-deep);
+
+  /* shape language */
+  --radius-s: 7px;
+  --radius-m: 9px;
+  --radius-l: 12px;
+
+  /* typography */
+  --font-text-theme:        'Zen Maru Gothic', system-ui, sans-serif;
+  --font-interface-theme:   'Zen Maru Gothic', system-ui, sans-serif;
+  --font-text:  'Zen Maru Gothic', system-ui, sans-serif;
+  --bold-weight: 900;
+}
+
+/* ============================================================
+   2. WINDOW / WORKSPACE CHROME
+   ============================================================ */
+.theme-dark .workspace { background: var(--sumi-bg-window); }
+.theme-dark .workspace-ribbon { background: var(--sumi-bg-chrome); border-color: var(--sumi-border); }
+.theme-dark .workspace-tabs .workspace-tab-header.is-active {
+  background: var(--sumi-bg-main);
+}
+.theme-dark .workspace-tab-header.is-active .workspace-tab-header-inner-title { color: var(--sumi-text-strong); font-weight: 900; }
+
+/* active tab gets a sakura pill */
+.theme-dark .workspace-tab-header.is-active .workspace-tab-header-inner {
+  background: var(--sumi-pink);
+  border-radius: 8px;
+}
+.theme-dark .workspace-tab-header.is-active .workspace-tab-header-inner-title { color: #181a22; }
+
+/* ============================================================
+   3. SIDEBAR — "Glance" rail
+   ============================================================ */
+.theme-dark .nav-folder-title,
+.theme-dark .nav-file-title { border-radius: var(--radius-m); }
+.theme-dark .nav-file-title.is-active {
+  background: var(--sumi-bg-card);
+  border: 1px solid var(--sumi-border);
+}
+.theme-dark .nav-file-title.is-active .nav-file-title-content { color: var(--sumi-text-strong); font-weight: 900; }
+
+/* calendar plugin: today dot */
+.theme-dark .calendar .day.active,
+.theme-dark .calendar .day.today {
+  background: var(--sumi-pink) !important;
+  color: #181a22 !important;
+  border-radius: 50%;
+  font-weight: 900;
+}
+
+/* ============================================================
+   4. CARDS — recent notes / dataview tables / callouts
+   ============================================================ */
+.theme-dark .markdown-preview-view table,
+.theme-dark .markdown-rendered table {
+  background: var(--sumi-bg-card);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  border: 1px solid var(--sumi-border);
+}
+.theme-dark th { background: var(--sumi-bg-card-2); color: var(--sumi-text-muted); }
+
+/* callouts → soft sakura cards */
+.theme-dark .callout {
+  background: var(--sumi-bg-card-2);
+  border: 1px solid var(--sumi-border-2);
+  border-radius: var(--radius-l);
+}
+.theme-dark .callout[data-callout="hypothesis"],
+.theme-dark .callout[data-callout="note"] { --callout-color: 244,160,192; }
+
+/* inline code / tags */
+.theme-dark .cm-s-obsidian .cm-inline-code,
+.theme-dark code { background: var(--sumi-bg-card-2); color: var(--sumi-text-strong); border-radius: 5px; }
+.theme-dark a.tag {
+  background: var(--sumi-bg-card-2);
+  color: var(--sumi-pink);
+  border-radius: 20px;
+  border: none;
+  padding: 2px 11px;
+  font-weight: 700;
+}
+.theme-dark a.tag:hover { background: var(--sumi-pink); color: #181a22; }
+
+/* ============================================================
+   5. HEADINGS — bold playful type
+   ============================================================ */
+.theme-dark .markdown-rendered h1 { font-weight: 900; letter-spacing: -.5px; font-size: 2.1em; }
+.theme-dark .markdown-rendered h2 { font-weight: 900; letter-spacing: -.3px; }
+.theme-dark .markdown-rendered h3 { color: var(--sumi-pink); font-weight: 700; }
+
+/* eyebrow / kicker: an H6 styled as an uppercase label */
+.theme-dark .markdown-rendered h6 {
+  text-transform: uppercase; letter-spacing: 2px; font-size: .72em;
+  color: var(--sumi-pink); font-weight: 700;
+}
+
+/* ============================================================
+   6. GRAPH VIEW — sakura node palette
+   ============================================================ */
+.theme-dark .graph-view.color-fill { color: var(--sumi-pink); }
+.theme-dark .graph-view.color-fill-focused { color: var(--sumi-pink-deep); }
+.theme-dark .graph-view.color-line { color: var(--sumi-border-2); }
+.theme-dark .graph-view.color-text { color: var(--sumi-text-muted); }
+.theme-dark .graph-view.color-fill-tag { color: var(--sumi-gold); }
+.theme-dark .graph-view.color-fill-attachment { color: var(--sumi-teal); }
+.theme-dark .graph-view.color-circle { color: var(--sumi-violet); }
+
+/* ============================================================
+   7. FALLING PETALS  (pure CSS · on by default · disable via Style Settings)
+   ------------------------------------------------------------
+   Two petal layers are drawn on the workspace pseudo-elements.
+   Each pseudo-element is one small petal shape, then multiplied
+   into a whole field with a long box-shadow list. The elements
+   are position: fixed and 11px tall, so their shadows never
+   affect layout and cannot create scrollbars.
+   ============================================================ */
+body:not(.sumi-petals-off).theme-dark .workspace::before,
+body:not(.sumi-petals-off).theme-dark .workspace::after {
+  content: "";
+  position: fixed;
+  top: -5vh; left: 0;
+  width: 11px; height: 11px;
+  border-radius: 0 100% 0 100%;
+  pointer-events: none;
+  z-index: var(--layer-cover, 35);
+}
+
+/* Layer A — sakura pink, faster, seeded immediately with a negative delay */
+body:not(.sumi-petals-off).theme-dark .workspace::before {
+  background: var(--sumi-pink);
+  box-shadow:
+     6vw  -60px 0 -1px var(--sumi-pink),
+    14vw -220px 0 -3px var(--sumi-pink),
+    23vw  -40px 0  0px var(--sumi-pink),
+    31vw -300px 0 -2px var(--sumi-pink),
+    42vw -120px 0 -1px var(--sumi-pink),
+    51vw -420px 0 -3px var(--sumi-pink),
+    58vw  -80px 0  0px var(--sumi-pink),
+    67vw -260px 0 -2px var(--sumi-pink),
+    76vw -160px 0 -1px var(--sumi-pink),
+    84vw -360px 0 -3px var(--sumi-pink),
+    91vw  -30px 0  0px var(--sumi-pink),
+    97vw -200px 0 -2px var(--sumi-pink);
+  animation: sumiFall 11s linear infinite;
+  animation-delay: -7s;
+}
+
+/* Layer B — deeper pink, slower, drifts the other way */
+body:not(.sumi-petals-off).theme-dark .workspace::after {
+  background: var(--sumi-pink-deep);
+  box-shadow:
+     3vw -180px 0 -2px var(--sumi-pink-deep),
+    12vw  -50px 0 -1px var(--sumi-pink-deep),
+    20vw -340px 0 -3px var(--sumi-pink-deep),
+    29vw -110px 0 -1px var(--sumi-pink-deep),
+    37vw -260px 0 -2px var(--sumi-pink-deep),
+    46vw  -20px 0  0px var(--sumi-pink-deep),
+    55vw -400px 0 -3px var(--sumi-pink-deep),
+    63vw -140px 0 -1px var(--sumi-pink-deep),
+    72vw -300px 0 -2px var(--sumi-pink-deep),
+    81vw  -70px 0 -1px var(--sumi-pink-deep),
+    89vw -230px 0 -2px var(--sumi-pink-deep),
+    95vw -380px 0 -3px var(--sumi-pink-deep);
+  animation: sumiFall2 17s linear infinite;
+  animation-delay: -4s;
+}
+
+@keyframes sumiFall {
+  0%   { transform: translateY(0)      translateX(0)    rotate(0deg);   opacity: 0; }
+  10%  { opacity: .9; }
+  90%  { opacity: .9; }
+  100% { transform: translateY(115vh)  translateX(60px) rotate(340deg); opacity: 0; }
+}
+@keyframes sumiFall2 {
+  0%   { transform: translateY(0)      translateX(0)     rotate(0deg);    opacity: 0; }
+  10%  { opacity: .75; }
+  90%  { opacity: .75; }
+  100% { transform: translateY(115vh)  translateX(-45px) rotate(-320deg); opacity: 0; }
+}
+
+/* Accessibility: no motion for readers who ask for none */
+@media (prefers-reduced-motion: reduce) {
+  body:not(.sumi-petals-off).theme-dark .workspace::before,
+  body:not(.sumi-petals-off).theme-dark .workspace::after {
+    animation: none;
+    content: none;
+  }
+}
+
+/* Back-compat: the standalone petal class still resolves if referenced */
+.sumi-petal {
+  position: fixed; top: -5vh; z-index: var(--layer-cover, 35); pointer-events: none;
+  width: 11px; height: 11px; background: var(--sumi-pink);
+  border-radius: 0 100% 0 100%;
+  animation: sumiFall 11s linear infinite;
+}
+
+/* ============================================================
+   8. STYLE SETTINGS  (https://github.com/mgmeyers/obsidian-style-settings)
+   ============================================================ */
+/* @settings
+name: Sumi
+id: sumi
+settings:
+  -
+    id: sumi-accent
+    title: Accent colour
+    type: variable-select
+    default: '#f4a0c0'
+    options:
+      - label: Sakura pink
+        value: '#f4a0c0'
+      - label: Deep pink
+        value: '#ec84a4'
+      - label: Soft pink
+        value: '#e98aae'
+  -
+    id: sumi-petals-off
+    title: Disable falling petals
+    description: Turn off the drifting sakura petals over the workspace.
+    type: class-toggle
+    default: false
+    addCommand: true
+  -
+    id: sumi-heading-weight
+    title: Heading weight
+    type: variable-select
+    default: '900'
+    options:
+      - label: Heavy (900)
+        value: '900'
+      - label: Bold (700)
+        value: '700'
+  -
+    id: sumi-card-borders
+    title: Card borders
+    type: class-toggle
+    default: true
+*/
+
+.theme-dark {
+  --interactive-accent: var(--sumi-accent, var(--sumi-pink));
+  --text-accent:        var(--sumi-accent, var(--sumi-pink));
+  --bold-weight:        var(--sumi-heading-weight, 900);
+}
+body:not(.sumi-card-borders) .callout,
+body:not(.sumi-card-borders) .markdown-rendered table { border: none; }
